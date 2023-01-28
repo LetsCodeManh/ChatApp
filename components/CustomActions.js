@@ -3,7 +3,7 @@ import React from "react";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
 import { connectActionSheet } from "@expo/react-native-action-sheet";
-import { Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const firebase = require("firebase");
 require("firebase/firestore");

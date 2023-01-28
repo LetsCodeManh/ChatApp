@@ -1,11 +1,12 @@
 import React from "react";
-import { Platform, View, KeyboardAvoidingView } from "react-native";
+import { Platform, View, KeyboardAvoidingView, Text } from "react-native";
 import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 import CustomActions from "./CustomActions";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
+import MapView from "react-native-maps";
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -14,7 +15,7 @@ export default class Chat extends React.Component {
   constructor() {
     super();
 
-    if (!firebase.apps.length) {
+    if (firebase.apps.length === 0) {
       firebase.initializeApp({
         apiKey: "AIzaSyD2u_-pj-2Nz-pfhutJVSN6bpwhrGAlaDU",
         authDomain: "chatapp-5302a.firebaseapp.com",
@@ -38,6 +39,7 @@ export default class Chat extends React.Component {
       image: null,
       location: null,
       isConnected: false,
+      loggedInText: "Please wait, you are getting logged in!",
     };
   }
 
@@ -66,7 +68,7 @@ export default class Chat extends React.Component {
 
   async deleteMessages() {
     try {
-      await AsyncStorage.removeItem("messsages");
+      await AsyncStorage.removeItem("messages");
       this.setState({
         messages: [],
       });
@@ -106,6 +108,7 @@ export default class Chat extends React.Component {
           _id: user.uid,
           name: name,
         },
+        loggedInText: "",
       });
       this.unsubscribe = this.referenceChatMessages
         .orderBy("createdAt", "desc")
@@ -116,10 +119,8 @@ export default class Chat extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.state.isConnected) {
-      this.unsubscribe();
-      this.authUnsubscribe();
-    }
+    this.unsubscribe();
+    this.authUnsubscribe();
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -135,7 +136,7 @@ export default class Chat extends React.Component {
         user: {
           _id: data.user._id,
           name: data.user.name,
-          avatar: data.user.avater || "",
+          avatar: data.user.avatar || "",
         },
         image: data.image || null,
         location: data.location || null,
@@ -217,6 +218,7 @@ export default class Chat extends React.Component {
         <View
           style={{ flex: 1, backgroundColor: this.props.route.params.color }}
         >
+          <Text>{this.state.loggedInText}</Text>
           <GiftedChat
             messages={this.state.messages}
             renderInputToolbar={this.renderInputToolbar.bind(this)}
