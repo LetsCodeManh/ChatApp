@@ -42,7 +42,7 @@ export default class Start extends Component {
                       color === "#090C08" && styles.selected,
                       { backgroundColor: "#090C08" },
                     ]}
-                    onPress={() => this.setState({color: "#090C08"})}
+                    onPress={() => this.setState({ color: "#090C08" })}
                     colorValue="#090C08"
                   />
                   <TouchableOpacity
@@ -51,7 +51,7 @@ export default class Start extends Component {
                       color === "#474056" && styles.selected,
                       { backgroundColor: "#474056" },
                     ]}
-                    onPress={() => this.setState({color: "#474056"})}
+                    onPress={() => this.setState({ color: "#474056" })}
                     backgroundColor="#474056"
                   />
                   <TouchableOpacity
@@ -60,7 +60,7 @@ export default class Start extends Component {
                       color === "#8A95A5" && styles.selected,
                       { backgroundColor: "#8A95A5" },
                     ]}
-                    onPress={() => this.setState({color: "#8A95A5"})}
+                    onPress={() => this.setState({ color: "#8A95A5" })}
                     backgroundColor="#8A95A5"
                   />
                   <TouchableOpacity
@@ -69,7 +69,7 @@ export default class Start extends Component {
                       color === "#B9C6AE" && styles.selected,
                       { backgroundColor: "#B9C6AE" },
                     ]}
-                    onPress={() => this.setState({color: "#B9C6AE"})}
+                    onPress={() => this.setState({ color: "#B9C6AE" })}
                     backgroundColor="#B9C6AE"
                   />
                 </View>
@@ -83,7 +83,9 @@ export default class Start extends Component {
                     color: color,
                   })
                 }
-                accessibilityLabel="Accept my Name and Color and Start Chatting!"
+                accessible={true}
+                accessibilityLabel="Start Chatting"
+                accessibilityHint="Accept my Name and Color and Start Chatting!"
               >
                 <Text style={styles.buttonText}>Start Chatting</Text>
               </TouchableOpacity>
