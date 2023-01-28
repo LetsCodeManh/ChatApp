@@ -1,5 +1,4 @@
 import "react-native-gesture-handler";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Start from "./components/Start";
@@ -14,13 +13,9 @@ const App = () => {
         <Stack.Screen
           name="Start"
           component={Start}
-          options={{ title: "Start" }}
+          options={{ title: "MeetApp" }}
         />
-        <Stack.Screen
-          name="Chat"
-          component={Chat}
-          options={{ title: "Chat" }}
-        />
+        <Stack.Screen name="Chat" component={Chat} />
       </Stack.Navigator>
     </NavigationContainer>
   );

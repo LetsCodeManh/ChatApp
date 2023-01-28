@@ -1,7 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { Component } from "react";
 import {
-  Button,
   ImageBackground,
   StyleSheet,
   Text,
@@ -12,80 +10,90 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import image from "../assets/StartBackground.jpg";
 
-const Start = () => {
-  const navigation = useNavigation();
-  const [name, setName] = useState("");
-  const [color, setColor] = useState("");
+export default class Start extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      color: "",
+    };
+  }
 
-  return (
-    <View style={{ flex: 1 }}>
-      <ImageBackground source={image} style={{ flex: 1 }}>
-        <View style={styles.imageBackground}>
-          <Text style={styles.nameApp}>ChatApp</Text>
-          <View style={styles.userInputArea}>
-            <TextInput
-              style={styles.textInput}
-              value={name}
-              onChangeText={(nameInput) => setName(nameInput)}
-              placeholder="What is your name?"
-            />
-            <View style={styles.chooseContainer}>
-              <Text style={styles.chooseText}>Choose a Background Color</Text>
-              <View style={styles.colorContainer}>
-                <TouchableOpacity
-                  style={[
-                    styles.colorButton,
-                    color === "#090C08" && styles.selected,
-                    { backgroundColor: "#090C08" },
-                  ]}
-                  onPress={() => setColor("#090C08")}
-                  colorValue="#090C08"
-                />
-                <TouchableOpacity
-                  style={[
-                    styles.colorButton,
-                    color === "#474056" && styles.selected,
-                    { backgroundColor: "#474056" },
-                  ]}
-                  onPress={() => setColor("#474056")}
-                  backgroundColor="#474056"
-                />
-                <TouchableOpacity
-                  style={[
-                    styles.colorButton,
-                    color === "#8A95A5" && styles.selected,
-                    { backgroundColor: "#8A95A5" },
-                  ]}
-                  onPress={() => setColor("#8A95A5")}
-                  backgroundColor="#8A95A5"
-                />
-                <TouchableOpacity
-                  style={[
-                    styles.colorButton,
-                    color === "#B9C6AE" && styles.selected,
-                    { backgroundColor: "#B9C6AE" },
-                  ]}
-                  onPress={() => setColor("#B9C6AE")}
-                  backgroundColor="#B9C6AE"
-                />
+  render() {
+    const { name, color } = this.state;
+    return (
+      <View style={{ flex: 1 }}>
+        <ImageBackground source={image} style={{ flex: 1 }}>
+          <View style={styles.imageBackground}>
+            <Text style={styles.nameApp}>ChatApp</Text>
+            <View style={styles.userInputArea}>
+              <TextInput
+                style={styles.textInput}
+                value={name}
+                onChangeText={(name) => this.setState({ name })}
+                placeholder="What is your name?"
+              />
+              <View style={styles.chooseContainer}>
+                <Text style={styles.chooseText}>Choose a Background Color</Text>
+                <View style={styles.colorContainer}>
+                  <TouchableOpacity
+                    style={[
+                      styles.colorButton,
+                      color === "#090C08" && styles.selected,
+                      { backgroundColor: "#090C08" },
+                    ]}
+                    onPress={() => this.setState({color: "#090C08"})}
+                    colorValue="#090C08"
+                  />
+                  <TouchableOpacity
+                    style={[
+                      styles.colorButton,
+                      color === "#474056" && styles.selected,
+                      { backgroundColor: "#474056" },
+                    ]}
+                    onPress={() => this.setState({color: "#474056"})}
+                    backgroundColor="#474056"
+                  />
+                  <TouchableOpacity
+                    style={[
+                      styles.colorButton,
+                      color === "#8A95A5" && styles.selected,
+                      { backgroundColor: "#8A95A5" },
+                    ]}
+                    onPress={() => this.setState({color: "#8A95A5"})}
+                    backgroundColor="#8A95A5"
+                  />
+                  <TouchableOpacity
+                    style={[
+                      styles.colorButton,
+                      color === "#B9C6AE" && styles.selected,
+                      { backgroundColor: "#B9C6AE" },
+                    ]}
+                    onPress={() => this.setState({color: "#B9C6AE"})}
+                    backgroundColor="#B9C6AE"
+                  />
+                </View>
               </View>
-            </View>
 
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() =>
-                navigation.navigate("Chat", { name: name, color: color })
-              }
-              accessibilityLabel="Accept my Name and Color and Start Chatting!"
-            >
-              <Text style={styles.buttonText}>Start Chatting</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() =>
+                  this.props.navigation.navigate("Chat", {
+                    name: name,
+                    color: color,
+                  })
+                }
+                accessibilityLabel="Accept my Name and Color and Start Chatting!"
+              >
+                <Text style={styles.buttonText}>Start Chatting</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
-  );
-};
+        </ImageBackground>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   imageBackground: {
@@ -141,12 +149,12 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: "50%",
     borderWidth: 5,
-    borderColor: 'white',
-    overflow: 'hidden'
+    borderColor: "white",
+    overflow: "hidden",
   },
   selected: {
     borderColor: "white",
-    borderWidth: 2
+    borderWidth: 2,
   },
   button: {
     backgroundColor: "#757083",
@@ -161,5 +169,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
-
-export default Start;
