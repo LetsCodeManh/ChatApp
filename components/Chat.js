@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Platform, Text, View } from "react-native";
+import { Platform, View, KeyboardAvoidingView } from "react-native";
 import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
-import KeyboardAvoidingView from "react-native/Libraries/Components/Keyboard/KeyboardAvoidingView";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
+import CustomActions from "./CustomActions";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 const firebase = require("firebase");
 require("firebase/firestore");
@@ -12,10 +13,6 @@ require("firebase/firestore");
 export default class Chat extends React.Component {
   constructor() {
     super();
-    this.state = {
-      messages: [],
-      isConnected: false,
-    };
 
     if (!firebase.apps.length) {
       firebase.initializeApp({
@@ -29,43 +26,19 @@ export default class Chat extends React.Component {
     }
 
     this.referenceChatMessages = firebase.firestore().collection("messages");
-  }
 
-  componentDidMount() {
-    let name = this.props.route.params.name;
-    this.props.navigation.setOptions({ title: name });
-    
-    this.getMessages()
-
-    this.referenceChatMessages = firebase.firestore().collection("messages");
-
-    NetInfo.fetch().then((connection) => {
-      if (connection.isConnected) {
-        console.log("online");
-      } else {
-        console.log("offline");
-      }
-    });
-
-    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        firebase.auth().signInAnonymously();
-      }
-      this.setState({
-        uid: user.uid,
-        messages: [],
-      });
-      this.unsubscribe = this.referenceChatMessages
-        .orderBy("createdAt", "desc")
-        .onSnapshot(this.onCollectionUpdate);
-    });
-  }
-
-  componentWillUnmount() {
-    if (this.state.isConnected) {
-      this.unsubscribe();
-      this.authUnsubscribe();
-    }
+    this.state = {
+      messages: [],
+      uid: 0,
+      user: {
+        _id: "",
+        avatar: "",
+        name: "",
+      },
+      image: null,
+      location: null,
+      isConnected: false,
+    };
   }
 
   async getMessages() {
@@ -102,15 +75,51 @@ export default class Chat extends React.Component {
     }
   }
 
-  onSend(messages = []) {
-    this.setState(
-      (previousState) => ({
-        messages: GiftedChat.append(previousState.messages, messages),
-      }),
-      () => {
-        this.saveMessages();
+  componentDidMount() {
+    let name = this.props.route.params.name;
+    this.props.navigation.setOptions({ title: `${name}'s Chat` });
+
+    NetInfo.fetch().then((connection) => {
+      if (connection.isConnected) {
+        this.setState({
+          isConnected: true,
+        });
+        console.log("online");
+      } else {
+        this.setState({
+          isConnected: false,
+        });
+        console.log("offline");
       }
-    );
+    });
+
+    this.referenceChatMessages = firebase.firestore().collection("messages");
+
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        firebase.auth().signInAnonymously();
+      }
+      this.setState({
+        uid: user.uid,
+        messages: [],
+        user: {
+          _id: user.uid,
+          name: name,
+        },
+      });
+      this.unsubscribe = this.referenceChatMessages
+        .orderBy("createdAt", "desc")
+        .onSnapshot(this.onCollectionUpdate);
+    });
+
+    this.getMessages();
+  }
+
+  componentWillUnmount() {
+    if (this.state.isConnected) {
+      this.unsubscribe();
+      this.authUnsubscribe();
+    }
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -121,7 +130,7 @@ export default class Chat extends React.Component {
       let data = doc.data();
       messages.push({
         _id: data._id,
-        text: data.text,
+        text: data.text || "",
         createdAt: data.createdAt.toDate(),
         user: {
           _id: data.user._id,
@@ -148,12 +157,15 @@ export default class Chat extends React.Component {
     });
   };
 
-  renderBubble(props) {
-    return (
-      <Bubble
-        {...props}
-        wrapperStyle={{ right: { backgroundColor: "#000" } }}
-      />
+  onSend(messages = []) {
+    this.setState(
+      (previousState) => ({
+        messages: GiftedChat.append(previousState.messages, messages),
+      }),
+      () => {
+        this.saveMessages();
+        this.saveMessages();
+      }
     );
   }
 
@@ -164,23 +176,65 @@ export default class Chat extends React.Component {
     }
   }
 
-  render() {
-    // let name = this.props.route.params.name;
-    let color = this.props.route.params.color;
-    // this.props.navigation.setOption({ title: name });
+  renderCustomAction = (props) => {
+    return <CustomActions {...props} />;
+  };
 
-    return (
-      <View style={{ flex: 1, backgroundColor: color }}>
-        <GiftedChat
-          renderBubble={this.renderBubble.bind(this)}
-          messages={this.state.messages}
-          onSend={(messages) => this.onSend(messages)}
-          user={{ _id: 1 }}
+  renderCustomView(props) {
+    const { currentMessage } = props;
+    if (currentMessage.location) {
+      return (
+        <MapView
+          style={{ width: 150, height: 100, borderRadius: 13, margin: 3 }}
+          region={{
+            latitude: currentMessage.location.latitude,
+            longitude: currentMessage.location.longitude,
+            latitudeDelta: 0.0922,
+            longituedeDelta: 0.0421,
+          }}
         />
-        {Platform.OS === "android" ? (
-          <KeyboardAvoidingView behaviour="height" />
-        ) : null}
-      </View>
+      );
+    }
+
+    return null;
+  }
+
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: { backgroundColor: "#000" },
+          left: { backgroundColor: "#fff" },
+        }}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <ActionSheetProvider>
+        <View
+          style={{ flex: 1, backgroundColor: this.props.route.params.color }}
+        >
+          <GiftedChat
+            messages={this.state.messages}
+            // isConnected={this.state.isConnected}
+            renderInputToolbar={this.renderInputToolbar.bind(this)}
+            renderAction={this.renderCustomAction.bind(this)}
+            renderCustomView={this.renderCustomView.bind(this)}
+            renderBubble={this.renderBubble.bind(this)}
+            onSend={(messages) => this.onSend(messages)}
+            user={{
+              _id: this.state.uid,
+              avatar: "https://placeimg.com/140/140/any",
+            }}
+          />
+          {Platform.OS === "android" ? (
+            <KeyboardAvoidingView behaviour="height" />
+          ) : null}
+        </View>
+      </ActionSheetProvider>
     );
   }
 }

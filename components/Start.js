@@ -1,16 +1,17 @@
-import { Component } from "react";
+import React from "react";
 import {
   ImageBackground,
   StyleSheet,
   Text,
   TextInput,
   View,
+  TouchableOpacity,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 import image from "../assets/StartBackground.jpg";
 
-export default class Start extends Component {
+export default class Start extends React.Component {
+  // Create state for "name" and "color"
   constructor(props) {
     super(props);
     this.state = {
@@ -22,77 +23,78 @@ export default class Start extends Component {
   render() {
     const { name, color } = this.state;
     return (
-      <View style={{ flex: 1 }}>
-        <ImageBackground source={image} style={{ flex: 1 }}>
-          <View style={styles.imageBackground}>
-            <Text style={styles.nameApp}>ChatApp</Text>
-            <View style={styles.userInputArea}>
-              <TextInput
-                style={styles.textInput}
-                value={name}
-                onChangeText={(name) => this.setState({ name })}
-                placeholder="What is your name?"
-              />
-              <View style={styles.chooseContainer}>
-                <Text style={styles.chooseText}>Choose a Background Color</Text>
-                <View style={styles.colorContainer}>
-                  <TouchableOpacity
-                    style={[
-                      styles.colorButton,
-                      color === "#090C08" && styles.selected,
-                      { backgroundColor: "#090C08" },
-                    ]}
-                    onPress={() => this.setState({ color: "#090C08" })}
-                    colorValue="#090C08"
-                  />
-                  <TouchableOpacity
-                    style={[
-                      styles.colorButton,
-                      color === "#474056" && styles.selected,
-                      { backgroundColor: "#474056" },
-                    ]}
-                    onPress={() => this.setState({ color: "#474056" })}
-                    backgroundColor="#474056"
-                  />
-                  <TouchableOpacity
-                    style={[
-                      styles.colorButton,
-                      color === "#8A95A5" && styles.selected,
-                      { backgroundColor: "#8A95A5" },
-                    ]}
-                    onPress={() => this.setState({ color: "#8A95A5" })}
-                    backgroundColor="#8A95A5"
-                  />
-                  <TouchableOpacity
-                    style={[
-                      styles.colorButton,
-                      color === "#B9C6AE" && styles.selected,
-                      { backgroundColor: "#B9C6AE" },
-                    ]}
-                    onPress={() => this.setState({ color: "#B9C6AE" })}
-                    backgroundColor="#B9C6AE"
-                  />
-                </View>
+      <ImageBackground source={image} style={{ flex: 1 }}>
+        <View style={styles.imageBackground}>
+          <Text style={styles.nameApp}>ChatApp</Text>
+          <View style={styles.userInputArea}>
+            {/* Text Input */}
+            <TextInput
+              style={styles.textInput}
+              value={name}
+              onChangeText={(name) => this.setState({ name })}
+              placeholder="What is your name?"
+            />
+            {/* White Box */}
+            <View style={styles.chooseContainer}>
+              <Text style={styles.chooseText}>Choose a Background Color</Text>
+              <View style={styles.colorContainer}>
+                <TouchableOpacity
+                  style={[
+                    styles.colorButton,
+                    color === "#090C08" && styles.selected,
+                    { backgroundColor: "#090C08" },
+                  ]}
+                  onPress={() => this.setState({ color: "#090C08" })}
+                  colorValue="#090C08"
+                />
+                <TouchableOpacity
+                  style={[
+                    styles.colorButton,
+                    color === "#474056" && styles.selected,
+                    { backgroundColor: "#474056" },
+                  ]}
+                  onPress={() => this.setState({ color: "#474056" })}
+                  backgroundColor="#474056"
+                />
+                <TouchableOpacity
+                  style={[
+                    styles.colorButton,
+                    color === "#8A95A5" && styles.selected,
+                    { backgroundColor: "#8A95A5" },
+                  ]}
+                  onPress={() => this.setState({ color: "#8A95A5" })}
+                  backgroundColor="#8A95A5"
+                />
+                <TouchableOpacity
+                  style={[
+                    styles.colorButton,
+                    color === "#B9C6AE" && styles.selected,
+                    { backgroundColor: "#B9C6AE" },
+                  ]}
+                  onPress={() => this.setState({ color: "#B9C6AE" })}
+                  backgroundColor="#B9C6AE"
+                />
               </View>
-
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() =>
-                  this.props.navigation.navigate("Chat", {
-                    name: name,
-                    color: color,
-                  })
-                }
-                accessible={true}
-                accessibilityLabel="Start Chatting"
-                accessibilityHint="Accept my Name and Color and Start Chatting!"
-              >
-                <Text style={styles.buttonText}>Start Chatting</Text>
-              </TouchableOpacity>
             </View>
+
+            {/* Button */}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() =>
+                this.props.navigation.navigate("Chat", {
+                  name: name,
+                  color: color,
+                })
+              }
+              accessible={true}
+              accessibilityLabel="Start Chatting"
+              accessibilityHint="Accept my Name and Color and Start Chatting!"
+            >
+              <Text style={styles.buttonText}>Start Chatting</Text>
+            </TouchableOpacity>
           </View>
-        </ImageBackground>
-      </View>
+        </View>
+      </ImageBackground>
     );
   }
 }
