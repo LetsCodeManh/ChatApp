@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     fontWeight: "300",
     color: "#757083",
     marginBottom: 15,
+    textAlign: "center"
   },
   colorContainer: {
     flexDirection: "row",
