@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, View, KeyboardAvoidingView, Text } from "react-native";
+import { Platform, View, KeyboardAvoidingView } from "react-native";
 import { Bubble, GiftedChat, InputToolbar } from "react-native-gifted-chat";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -171,7 +171,7 @@ export default class Chat extends React.Component {
     }
   }
 
-  renderCustomAction = (props) => {
+  renderCustomActions = (props) => {
     return <CustomActions {...props} />;
   };
 
@@ -185,12 +185,11 @@ export default class Chat extends React.Component {
             latitude: currentMessage.location.latitude,
             longitude: currentMessage.location.longitude,
             latitudeDelta: 0.0922,
-            longituedeDelta: 0.0421,
+            longitudeDelta: 0.0421,
           }}
         />
       );
     }
-
     return null;
   }
 
@@ -215,7 +214,7 @@ export default class Chat extends React.Component {
           <GiftedChat
             messages={this.state.messages}
             renderInputToolbar={this.renderInputToolbar.bind(this)}
-            renderAction={this.renderCustomAction.bind(this)}
+            renderActions={this.renderCustomActions.bind(this)}
             renderCustomView={this.renderCustomView.bind(this)}
             renderBubble={this.renderBubble.bind(this)}
             onSend={(messages) => this.onSend(messages)}
