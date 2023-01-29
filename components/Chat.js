@@ -39,7 +39,6 @@ export default class Chat extends React.Component {
       image: null,
       location: null,
       isConnected: false,
-      loggedInText: "Please wait, you are getting logged in!",
     };
   }
 
@@ -81,6 +80,8 @@ export default class Chat extends React.Component {
     let name = this.props.route.params.name;
     this.props.navigation.setOptions({ title: `${name}'s Chat` });
 
+    this.getMessages();
+
     NetInfo.fetch().then((connection) => {
       if (connection.isConnected) {
         this.setState({
@@ -104,18 +105,11 @@ export default class Chat extends React.Component {
       this.setState({
         uid: user.uid,
         messages: [],
-        user: {
-          _id: user.uid,
-          name: name,
-        },
-        loggedInText: "",
       });
       this.unsubscribe = this.referenceChatMessages
         .orderBy("createdAt", "desc")
         .onSnapshot(this.onCollectionUpdate);
     });
-
-    this.getMessages();
   }
 
   componentWillUnmount() {
@@ -164,7 +158,7 @@ export default class Chat extends React.Component {
         messages: GiftedChat.append(previousState.messages, messages),
       }),
       () => {
-        this.saveMessages();
+        this.addMessage();
         this.saveMessages();
       }
     );
@@ -218,7 +212,6 @@ export default class Chat extends React.Component {
         <View
           style={{ flex: 1, backgroundColor: this.props.route.params.color }}
         >
-          <Text>{this.state.loggedInText}</Text>
           <GiftedChat
             messages={this.state.messages}
             renderInputToolbar={this.renderInputToolbar.bind(this)}

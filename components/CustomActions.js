@@ -12,12 +12,12 @@ export default class CustomActions extends React.Component {
   pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     try {
-      if (status === "grated") {
+      if (status === "granted") {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: "Images",
         }).catch((error) => console.log(error));
 
-        if (!result.cancelled) {
+        if (!result.canceled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
           this.props.onSend({ image: imageUrl });
         }
@@ -30,12 +30,12 @@ export default class CustomActions extends React.Component {
   takePhoto = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     try {
-      if (status === "grated") {
+      if (status === "granted") {
         let result = await ImagePicker.launchCameraAsync({
           mediaTypes: "Images",
         }).catch((error) => console.log(error));
 
-        if (!result.cancelled) {
+        if (!result.canceled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
           this.props.onSend({ image: imageUrl });
         }
@@ -48,7 +48,7 @@ export default class CustomActions extends React.Component {
   getLocation = async () => {
     const { status } = await Location.requestBackgroundPermissionsAsync();
     try {
-      if (status === "grated") {
+      if (status === "granted") {
         let result = await Location.getCurrentPositionAsync({}).catch((error) =>
           console.log(error)
         );
@@ -73,8 +73,8 @@ export default class CustomActions extends React.Component {
       xhr.onload = function () {
         resolve(xhr.response);
       };
-      xhr.onerror = function (error) {
-        console.log(error);
+      xhr.onerror = function (e) {
+        console.log(e);
         reject(new TypeError("Network request failed"));
       };
       xhr.responseType = "blob";
@@ -98,7 +98,7 @@ export default class CustomActions extends React.Component {
       "Cancel",
     ];
     const cancelButtonIndex = options.length - 1;
-    this.props.showActionSheetWithOption(
+    this.props.showActionSheetWithOptions(
       {
         options,
         cancelButtonIndex,
@@ -125,6 +125,8 @@ export default class CustomActions extends React.Component {
         accessible={true}
         accessibilityLabel="More options"
         accessibilityHint="Send an image or your geolocation."
+        style={[styles.container]}
+        onPress={this.onActionPress}
       >
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
@@ -155,7 +157,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
 CustomActions.contextTypes = {
   actionSheet: PropTypes.func,
 };
