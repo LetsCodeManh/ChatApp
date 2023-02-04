@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSDoc: Global</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="styles/prettify-tomorrow.css"
+    />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css" />
+  </head>
+
+  <body>
+    <div id="main">
+      <h1 class="page-title">Global</h1>
+
+      <section>
+        <header>
+          <h2></h2>
+        </header>
+
+        <article>
+          <div class="container-overview">
+            <dl class="details"></dl>
+          </div>
+
+          <h3 class="subsection-title">Methods</h3>
+
+          <h4 class="name" id="addMessage">
+            <span class="type-signature"></span>addMessage<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            Adds a message to the Firestore database collection "messages".
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line189">line 189</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="componentDidMount">
+            <span class="type-signature"></span>componentDidMount<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            Lifecycle method that is called when the component is mounted. Sets
+            the navigation title based on the passed `name` prop. Calls
+            `getMessages` to retrieve messages. Checks for the internet
+            connection using `NetInfo` and sets the state accordingly.
+            Subscribes to the `messages` collection in Firestore and sets the
+            state with the latest messages on update. If the user is not logged
+            in, it signs them in anonymously using Firebase authentication.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line114">line 114</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="componentWillUnmount">
+            <span class="type-signature"></span>componentWillUnmount<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            componentWillUnmount is a lifecycle method that is called just
+            before a component is unmounted and destroyed. This method is used
+            to perform any necessary cleanup before the component is removed
+            from the UI. In this implementation, it unsubscribes from two
+            events: The unsubscribe event, which listens to updates to the
+            Firebase firestore collection "messages". The authUnsubscribe event,
+            which listens to changes in the authentication state of the Firebase
+            user.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line157">line 157</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="deleteMessages">
+            <span class="type-signature"></span>deleteMessages<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">Deletes messages from AsyncStorage.</div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line92">line 92</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4
+            class="name"
+            id="getLocationisusedtogetthecurrentlocationoftheuser'sdevice."
+          >
+            <span class="type-signature">(async) </span>getLocation is used to
+            get the current location of the user's device.<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            It requests background location permissions and then gets the
+            current location of the device.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="CustomActions.js.html">CustomActions.js</a>,
+                  <a href="CustomActions.js.html#line58">line 58</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="getMessages">
+            <span class="type-signature"></span>getMessages<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">Fetches all messages from AsyncStorage.</div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line61">line 61</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4
+            class="name"
+            id="onActionPressisusedtoprompttheusertoselectadesiredaction."
+          >
+            <span class="type-signature"></span>onActionPress is used to prompt
+            the user to select a desired action.<span class="signature">()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            It shows a list of options for the user to choose from and executes
+            the selected action.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="CustomActions.js.html">CustomActions.js</a>,
+                  <a href="CustomActions.js.html#line114">line 114</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="onCollectionUpdate">
+            <span class="type-signature"></span>onCollectionUpdate<span
+              class="signature"
+              >(querySnapshot)</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            Callback function to handle updates to the chat messages in
+            Firestore
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>querySnapshot</code></td>
+
+                <td class="type">
+                  <span class="param-type">object</span>
+                </td>
+
+                <td class="description last">
+                  A QuerySnapshot object representing the chat messages.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line162">line 162</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="onSend">
+            <span class="type-signature"></span>onSend<span class="signature"
+              >(messages)</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            Adds a new message to the `messages` state and saves it to the
+            database.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>messages</code></td>
+
+                <td class="type">
+                  <span class="param-type">Array</span>
+                </td>
+
+                <td class="description last">An array of messages to add.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line206">line 206</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4
+            class="name"
+            id="pickImageisusedtopickanimagefromtheuser'sdevice'simagelibrary."
+          >
+            <span class="type-signature">(async) </span>pickImage is used to
+            pick an image from the user's device's image library.<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            It requests media library permissions, launches the image library
+            and saves the selected image.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="CustomActions.js.html">CustomActions.js</a>,
+                  <a href="CustomActions.js.html#line12">line 12</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="renderBubble">
+            <span class="type-signature"></span>renderBubble<span
+              class="signature"
+              >(props)</span
+            ><span class="type-signature"> &rarr; {Component}</span>
+          </h4>
+
+          <div class="description">
+            Renders the bubble component for the chat messages
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>props</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="description last">
+                  The properties passed to the component
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line270">line 270</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            - A customized bubble component for the chat messages
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">Component</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="renderCustomActions">
+            <span class="type-signature"></span>renderCustomActions<span
+              class="signature"
+              >(props)</span
+            ><span class="type-signature"> &rarr; {Component}</span>
+          </h4>
+
+          <div class="description">
+            Renders the custom actions for the chat messages.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>props</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="description last">
+                  The props passed to the component.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line236">line 236</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">- The component for the custom actions.</div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">Component</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="renderCustomView">
+            <span class="type-signature"></span>renderCustomView<span
+              class="signature"
+              >(props)</span
+            ><span class="type-signature"> &rarr; {Component}</span>
+          </h4>
+
+          <div class="description">
+            Renders the custom view for the chat messages.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>props</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="description last">
+                  The props passed to the component.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line246">line 246</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            - The component for the custom view, or null if the message does not
+            contain a location.
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">Component</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="renderInputToolbar">
+            <span class="type-signature"></span>renderInputToolbar<span
+              class="signature"
+              >(props)</span
+            ><span class="type-signature"> &rarr; {Component}</span>
+          </h4>
+
+          <div class="description">
+            Renders the Input Toolbar for the chat messages.
+          </div>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>props</code></td>
+
+                <td class="type">
+                  <span class="param-type">Object</span>
+                </td>
+
+                <td class="description last">
+                  The props passed to the component.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line223">line 223</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">
+            - The component for the Input Toolbar, or nothing if the device is
+            offline.
+          </div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">Component</span>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="saveMessages">
+            <span class="type-signature"></span>saveMessages<span
+              class="signature"
+              >()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">Saves messages to AsyncStorage.</div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="Chat.js.html">Chat.js</a>,
+                  <a href="Chat.js.html#line77">line 77</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4 class="name" id="takePhotoisusedtocaptureanimagefromthecamera">
+            <span class="type-signature">(async) </span>takePhoto is used to
+            capture an image from the camera<span class="signature">()</span
+            ><span class="type-signature"></span>
+          </h4>
+
+          <div class="description">
+            It requests camera permissions, launches the camera and saves the
+            captured image.
+          </div>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="CustomActions.js.html">CustomActions.js</a>,
+                  <a href="CustomActions.js.html#line35">line 35</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h4
+            class="name"
+            id="uploadImageFetchuploadsanimagetoFirebasestorage."
+          >
+            <span class="type-signature">(async) </span>uploadImageFetch uploads
+            an image to Firebase storage.<span class="signature">(uri)</span
+            ><span class="type-signature"> &rarr; {string}</span>
+          </h4>
+
+          <h5>Parameters:</h5>
+
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+
+                <th>Type</th>
+
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td class="name"><code>uri</code></td>
+
+                <td class="type">
+                  <span class="param-type">string</span>
+                </td>
+
+                <td class="description last">
+                  The uri of the image to be uploaded.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <dl class="details">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source">
+              <ul class="dummy">
+                <li>
+                  <a href="CustomActions.js.html">CustomActions.js</a>,
+                  <a href="CustomActions.js.html#line85">line 85</a>
+                </li>
+              </ul>
+            </dd>
+          </dl>
+
+          <h5>Returns:</h5>
+
+          <div class="param-desc">The download URL of the uploaded image.</div>
+
+          <dl>
+            <dt>Type</dt>
+            <dd>
+              <span class="param-type">string</span>
+            </dd>
+          </dl>
+        </article>
+      </section>
+    </div>
+
+    <nav>
+      <h2><a href="index.html">Home</a></h2>
+      <h3>Classes</h3>
+      <ul>
+        <li><a href="Chat.html">Chat</a></li>
+        <li><a href="module.exports_module.exports.html">exports</a></li>
+      </ul>
+      <h3>Global</h3>
+      <ul>
+        <li><a href="global.html#addMessage">addMessage</a></li>
+        <li><a href="global.html#componentDidMount">componentDidMount</a></li>
+        <li>
+          <a href="global.html#componentWillUnmount">componentWillUnmount</a>
+        </li>
+        <li><a href="global.html#deleteMessages">deleteMessages</a></li>
+        <li>
+          <a
+            href="global.html#getLocationisusedtogetthecurrentlocationoftheuser'sdevice."
+            >getLocation is used to get the current location of the user's
+            device.</a
+          >
+        </li>
+        <li><a href="global.html#getMessages">getMessages</a></li>
+        <li>
+          <a
+            href="global.html#onActionPressisusedtoprompttheusertoselectadesiredaction."
+            >onActionPress is used to prompt the user to select a desired
+            action.</a
+          >
+        </li>
+        <li><a href="global.html#onCollectionUpdate">onCollectionUpdate</a></li>
+        <li><a href="global.html#onSend">onSend</a></li>
+        <li>
+          <a
+            href="global.html#pickImageisusedtopickanimagefromtheuser'sdevice'simagelibrary."
+            >pickImage is used to pick an image from the user's device's image
+            library.</a
+          >
+        </li>
+        <li><a href="global.html#renderBubble">renderBubble</a></li>
+        <li>
+          <a href="global.html#renderCustomActions">renderCustomActions</a>
+        </li>
+        <li><a href="global.html#renderCustomView">renderCustomView</a></li>
+        <li><a href="global.html#renderInputToolbar">renderInputToolbar</a></li>
+        <li><a href="global.html#saveMessages">saveMessages</a></li>
+        <li>
+          <a href="global.html#takePhotoisusedtocaptureanimagefromthecamera"
+            >takePhoto is used to capture an image from the camera</a
+          >
+        </li>
+        <li>
+          <a href="global.html#uploadImageFetchuploadsanimagetoFirebasestorage."
+            >uploadImageFetch uploads an image to Firebase storage.</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <br class="clear" />
+
+    <footer>
+      Documentation generated by
+      <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Sat Feb 04
+      2023 15:27:54 GMT+0100 (Central European Standard Time)
+    </footer>
+
+    <script>
+      prettyPrint();
+    </script>
+    <script src="scripts/linenumber.js"></script>
+  </body>
+</html>

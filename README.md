@@ -1,47 +1,62 @@
-# ChatApp
+# ChatApp (mobile)
 
-## Objective
+A mobile chat application built with React Native, Expo, and Google Firestore Database. This project was created with the aim of gaining hands-on experience in these technologies and exploring the mobile app development process.
 
-To build a mobile ChatApp with React Native, Expo, and Google Firestore Database.
+## Screenshot
 
-## The 5 Ws
+## Installation
 
-### Who
+1. Clone the repository:
 
-The users of the mobile chat app. These could be friends, family or other
-students on this course. Your codebase will be used by other developers working on
-the product.
+```
+git clone https://github.com/[your_username]/ChatApp.git
 
-### What
+```
 
-A native chat app built with React Native, as well as all the relevant
-documentation.
+2. Install the dependencies:
 
-### When
+```
+npm install
+```
 
-Whenever users of your chat app want to communicate with each other.
+3. Run the app:
 
-### Where
+```
+npm start
+```
 
-The app will be optimized for both Android and iOS devices. You will use
-Expo to develop the app and Google Firestore to store the chat messages.
+Or alternatively, run the app with expo:
 
-### Why
+Check if you have expo installed and it's global with:
 
-Mobile chat apps are among the most commonly downloaded and used apps
-in the world, so knowing how to build a chat app is an indispensable skill. The app
-will demonstrate your React Native development skills.
+```
+expo --version
+```
+
+If not:
+
+```
+npm install expo-cli --global
+```
+
+After installation, you should be able to use:
+
+```
+expo start
+```
 
 ## Features
 
-- A page where users can enter their name and choose a background color for the chat screen
-  before joining the chat.
-- A page displaying the conversation, as well as an input field and submit button.
-- The chat must provide users with two additional communication features: sending images
-  and location data.
-- Data gets stored online and offline.
+- User-friendly interface that allows the user to enter their name and choose their preferred color
+- Chat screen with background color that matches the user's choice and name displayed above
+- Ability to post text messages, images, and locations
+- Data storage that is available both online and offline
 
-## Stack
+## Lessons Learned
+
+This project provided hands-on experience in building a mobile app and working with new technologies. I learned that building a mobile app is similar to building a website, but with its own unique set of challenges and differences.
+
+## Technologie Used
 
 - React Native
 - Expo
