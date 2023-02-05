@@ -12,7 +12,6 @@ A mobile chat application built with React Native, Expo, and Google Firestore Da
 
 ```
 git clone https://github.com/letscodemanh/ChatApp.git
-
 ```
 
 2. Install the dependencies:
