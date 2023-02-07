@@ -4,7 +4,7 @@ A mobile chat application built with React Native, Expo, and Google Firestore Da
 
 ## Screenshot
 
-<img src="https://user-images.githubusercontent.com/98701957/216773037-845ca720-955d-4158-9f2d-64d0e2bb23d0.png" width="200" height="300">
+<img src="https://user-images.githubusercontent.com/98701957/216773037-845ca720-955d-4158-9f2d-64d0e2bb23d0.png" width="400">
 
 ## Installation
 
